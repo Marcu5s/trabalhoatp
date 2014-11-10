@@ -1,4 +1,3 @@
-
 <div class="page1_block"><div>
    <div class="container_12">
      <div class="grid_4">
@@ -7,10 +6,10 @@
            <div class="title">ELEIÇÕES</div>
            <div class="inner1">
              <img src="<?php echo Controller::Assets() ?>images/page1_img1.jpg" alt="">
-             <h3>Dolore ipsum</h3>
-             <div class="clear"></div>Mes cuml dia sed in lacus ut eniascet aliiqt es sitet amet eismod ictor ut lig ameti dapibus ticdu nt mtsenе dolorlt comme. Mes cuml dia sed inertio.
+             <h3></h3>
+             <div class="clear"></div>
              <br>
-             <a href="#" class="btn">Detalhes</a>
+             <a href="<?php echo PATH_HTTP ?>?pg=media" class="btn">Detalhes</a>
            </div>
          </div>
        </div>
@@ -21,8 +20,8 @@
            <div class="title">QUESTÕES</div>
            <div class="inner1">
              <img src="<?php echo Controller::Assets() ?>images/page1_img2.jpg" alt="">
-             <h3>Dolore ipsum</h3>
-             <div class="clear"></div>Mes cuml dia sed in lacus ut eniascet aliiqt es sitet amet eismod ictor ut lig ameti dapibus ticdu nt mtsenе dolorlt comme. Mes cuml dia sed inertio.
+             <h3></h3>
+             <div class="clear"></div>
              <br>
              <a href="#" class="btn">Detalhes</a>
            </div>
@@ -35,8 +34,8 @@
            <div class="title">MISSÃO</div>
            <div class="inner1">
              <img src="<?php echo Controller::Assets() ?>images/page1_img3.jpg" alt="">
-             <h3>Dolore ipsum</h3>
-             <div class="clear"></div>Mes cuml dia sed in lacus ut eniascet aliiqt es sitet amet eismod ictor ut lig ameti dapibus ticdu nt mtsenе dolorlt comme. Mes cuml dia sed inertio.
+             <h3></h3>
+             <div class="clear"></div>
              <br>
              <a href="#" class="btn">Detalhes</a>
            </div>
@@ -88,7 +87,12 @@
         }]
     });
 });</script>
-           <div class="panel-body" id="Candidatos"></div>
+           <div class="row">
+            <div class="col-xs-12 col-md-8"></div>
+            <div class="col-xs-6 col-md-4"><a href="<?php echo PATH_HTTP ?>?pg=voting"  class="btn btn-success">Votar</a></div>
+        </div>
+        <div class="panel-body" id="Candidatos"></div>
+        
      </div>
   </div> 
 </div>

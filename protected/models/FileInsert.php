@@ -6,7 +6,7 @@ class FileInsert {
     public function setCandidatos($file) {
 
         $mongo = new Mongo();
-        $db = $mongo->selectDB('trabalhoatp')->votacao;
+        $db = $mongo->selectDB('trabalhoatp')->candidato;
                       
         if (!file_exists($file))
             die('FileInsert not loading...');
@@ -53,13 +53,13 @@ class FileInsert {
                 'CODIGO_MUNICIPIO_NASCIMENTO' => (int) $data[39],
                 'DESC_SIT_TOT_TURNO'          => self::getCharset($data[40]),
                 );
-            
-        //       $res = $db->insert($insert);
+             
+               $res = $db->insert($insert);
                if($res)
                ++$i;            
         }  
         
-      //  echo $i;
+         echo $i;
     }
 
     public static function getCharset($string) {
@@ -68,4 +68,4 @@ class FileInsert {
     
 }
 $obj = new FileInsert();
-$obj->setCandidatos('/web/trabalhoatp/tmp/consulta_cand_2014_MG.txt');
+$obj->setCandidatos('/web/trabalhoatp/tmp/consulta_cand_2014_TO.txt');

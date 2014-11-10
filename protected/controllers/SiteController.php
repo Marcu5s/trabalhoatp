@@ -5,18 +5,30 @@
  * @access public
  */
 class SiteController{
+      
     
+    public $uf = '';
+    
+    /**
+     * 
+     */
     public static function import(){
         
         $import = array('header','menu','slide','content','footer');      
         
-        if(self::getimports()){
-            unset($import[3]);
-            $import[2] = self::getimports();
-            
+        if(filter_input(INPUT_GET, 'pg')){
+            unset($import[2]);
+            $import[3] = filter_input(INPUT_GET, 'pg');            
         }
+        
+           
+        
         return   $import;       
     }
+    
+    /**
+     * 
+    */
     
     public static function getimports(){
         
@@ -34,6 +46,9 @@ class SiteController{
         
     }
     
+    /**
+    * 
+    */
     public static function totalCharts($campo){
         $mongoDb = new Mongo();
         
@@ -47,9 +62,14 @@ class SiteController{
         );
         return (int) $aggregate['result'][0]['total'];             
     }
-    public static function getString($campo){
+    
+    /**
+     * 
+     */
+    
+    public static function getString($column){
         
-        switch ($campo){
+        switch ($column){
             
            case 'confirm' :
                 return '$confirm';
@@ -66,7 +86,7 @@ class SiteController{
     
     public static function getCharts(){
         
-        $tables = array('confirm'=>"Confirmado",'deny'=>"Negar",'dout'=>"Dúvida");
+        $tables = array('deny'=>"Rejeitado",'dout'=>"Dúvida",'confirm'=>"Confirmado",);
         
         $string = '';
         
@@ -80,6 +100,100 @@ class SiteController{
         return "[$string]";
     }
     
+    /**
+    * 
+    */
     
+    public function Aggregate($uf,$name){
+        
+        $mongoDb = new Mongo();
+        $voting = $mongoDb->selectDB('trabalhoatp')->voting;
+                     
+        $aggregate = array(
+            array(
+                '$match'=>array('SIGLA_UF'=>$uf),
+                ),
+            array(
+                '$group'=>array(
+                    '_id'=>null,
+                    $name => array('$sum'=>  self::getString($name)),      
+                    
+               ),      
+            )         
+       );    
+       
+       $count =  $voting->find(array('SIGLA_UF'=>$uf))->count();
+        
+       if($count){    
+        
+       $result = $voting->aggregate($aggregate);
+       
+       unset($result['result'][0]['_id']);       
+       return $result['result'][0];
+       
+       }else{
+           
+           return false;
+           
+       } 
+           
+        
+    } 
+
+    public function xAxis(){
+        $mongoDb = new Mongo();
+        
+        $candidato = $mongoDb->selectDB('trabalhoatp')->candidato;
+        $distinct = $candidato->distinct('SIGLA_UF');        
+        $name = '';
+        
+        foreach($distinct as $nameUF){
+           
+            $name .= "'$nameUF',";
+           
+        }        
+        return $name;
+    }
+    
+    public function Data($column){
+        
+        $mongoDb = new Mongo();
+        $candidato = $mongoDb->selectDB('trabalhoatp')->candidato;
+        $distinct = $candidato->distinct('SIGLA_UF');  
+        
+        $data = '';
+        
+        foreach($distinct as $nameUF){
+           
+        $result = $this->Aggregate($nameUF,$column);
+        
+        $result =  (int) $result[$column];
+        
+        if(!$result)
+           $result = (int) 0;
+        
+            $data .= "$result,";
+                
+        }
+        return "[$data]";
+        
+    }
+
+        /**
+     * 
+     */       
+    public  function Series(){
+           
+        $votingCoulun = array('deny'=>'Dúvida','dout'=>'Rejeitado','confirm'=>'Confirmado');
+                 
+        foreach ($votingCoulun as $column => $nameChart) {
+              
+        $data .= "{name:'$nameChart',data:{$this->Data($column)}},";
+                
+        }                   
+        
+        return $data;
+           
+    } 
     
 }

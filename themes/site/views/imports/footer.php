@@ -2,20 +2,21 @@
 <footer>    
    <div class="container_12">
       <div class="grid_12">
-      <div class="socials">
+      <!-- <div class="socials">
         <a href="#"><img src="<?php echo Controller::Assets() ?>images/fb.png" alt=""></a>
         <a href="#"><img src="<?php echo Controller::Assets() ?>images/rss.png" alt=""></a>
         <a href="#"><img src="<?php echo Controller::Assets() ?>images/twitter.png" alt=""></a>
         <a href="#"><img src="<?php echo Controller::Assets() ?>images/g_plus.png" alt=""></a>
-      </div>
+      </div> -->
       <div class="copy">    
-        <span>roan season</span> &copy; 2013 <a href="index-6.html">Privacy Policy</a> <!--{%FOOTER_LINK} -->
+        <span></span> &copy; 2013 <a href="">Boca de Urna</a> <!--{%FOOTER_LINK} -->
       </div>
       
     </div>
     </div>
 </footer>
 <!--LIVEDEMO_00 -->
+     <script src="<?php echo PATH_HTTP ?>bootstrap/js/bootstrap.min.js"></script>
      <script src="<?php echo Controller::Assets() ?>js/jquery-migrate-1.1.1.js"></script>
      <script src="<?php echo Controller::Assets() ?>js/script.js"></script> 
      <script src="<?php echo Controller::Assets() ?>js/superfish.js"></script>

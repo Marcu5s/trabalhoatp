@@ -1,5 +1,4 @@
 <script>
-     
  $(window).load (
     function(){$('.carousel1').carouFredSel({auto: 8000,prev: '.prev',next: '.next', width: 940, items: {
       visible : {min: 1,
@@ -20,26 +19,25 @@ height: 'auto',
     jQuery(function(){
 
     });      
-    </script>
+</script>
 <div class="car_bg">
     <div class="container_12">
       <div class="grid_12">
       <div class="car_div">
         <ul class="carousel1">
           <li>
-            <span>Our actions </span>
-talk instead of words 
+            <span> </span>
+ 
           </li>
           <li>
-            <span>Absolutely</span> new approach to politics
+            <span></span>
           </li>
           <li>
-            <span>Leading<br> people</span> to better quality life
+            <span><br> </span> 
           </li>
         
         </ul></div>
         <a href="#" class="prev"></a><a href="#" class="next"></a>
       </div>
-    </div></div>
-  
+    </div></div>  
 </header>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
      <head>
-     <title>Home</title>
+     <title>Boca de Urna</title>
      <meta charset="utf-8">
      <meta name = "format-detection" content = "telephone=no" />
      <link rel="icon" href="<?php echo Controller::Assets() ?><?php echo Controller::Assets() ?>images/favicon.ico">

@@ -16,21 +16,20 @@ class Controller{
           
          require_once WWW_ROOT.'/protected/controllers/'.$class.'.php';            
           
-         $count  =  count($class::import());
+         $array = (array)  $class::import();
+          
          $i=0;
-         while($i < $count){
+         
+         
+         foreach($array as $key => $page){
               
-              $path = $pathTheme.$class::import()[$i].'.php';
+               $path = $pathTheme.$page.'.php';
               
               if(file_exists($path)){
-                 
-                  require_once $path;
+                 include $path;
                   
               }
-              
-             ++$i;
-         }
-          
+           }          
         }      
         
     }    
